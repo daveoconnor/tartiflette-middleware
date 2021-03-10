@@ -1,5 +1,5 @@
 import pytest
-from tartiflette_request_context_hooks.middleware import aiohttp
+from tartiflette_middleware.server import aiohttp
 from unittest.mock import MagicMock
 
 

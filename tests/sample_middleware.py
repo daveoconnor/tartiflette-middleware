@@ -1,7 +1,7 @@
-from tartiflette_request_context_hooks import BaseRequestContextHooks
+from tartiflette_middleware import BaseMiddleware
 
 
-class ConcreteRequestContextHooksNoLabel(BaseRequestContextHooks):
+class ConcreteMiddlewareNoLabel(BaseMiddleware):
     async def __aenter__(self):
         pass
 
@@ -9,7 +9,7 @@ class ConcreteRequestContextHooksNoLabel(BaseRequestContextHooks):
         pass
 
 
-class ConcreteRequestContextHooks(BaseRequestContextHooks):
+class ConcreteMiddleware(BaseMiddleware):
     label = 'CAExample'
 
     async def __aenter__(self):
@@ -19,7 +19,7 @@ class ConcreteRequestContextHooks(BaseRequestContextHooks):
         pass
 
 
-class ConcreteWorkingRequestContextHooks(BaseRequestContextHooks):
+class ConcreteWorkingMiddleware(BaseMiddleware):
     label = 'CAWorkingExample'
 
     async def __aenter__(self):

@@ -1,7 +1,7 @@
-# Tartiflette Request Context Hooks
+# Tartiflette Middlware
 
-Framework to facilitate the creation of per-request context data for your
-resolvers using simple python context managers. 
+Framework to facilitate the creation of middleware with resolver context
+variable assignment using plain python context managers. 
 
 Allows for processing of request/response headers, dependent on the
 http server you're using.
@@ -9,7 +9,7 @@ http server you're using.
 ## Installation
 
 ```bash
-pip install tartiflette-request-context-hooks
+pip install tartiflette-middleware
 ```
 
 ## Usage
@@ -18,20 +18,20 @@ This requires:
 1. Configuration of your hooks in your application.
 1. Update your resolvers to access your data.
 
-### 1 - Creation of your hooks
+### 1 - Creation of your middleware
 Create a context manager to run on each request.
 
 Example:
 
 ```python
-from tartiflette_request_contexts_hooks import BaseRequestContextHooks
+from tartiflette_middleware import BaseMiddleware
 
-class MyContextHooks(BaseRequestContextHooks):
+class MyMiddleware(BaseMiddleware):
     # required short arbitrary unique hook label
-    label = 'MyHk'
+    label = 'MyMware'
     
     def __init__(self, my_hook_params):
-        BaseRequestContextHooks.__init__(self)
+        BaseMiddleware.__init__(self)
         # do things necessary for repeated use across all of the requests, e.g.
         # configure factories
 
@@ -52,32 +52,31 @@ class MyContextHooks(BaseRequestContextHooks):
 There are more examples in the examples directory including one with access to
 AIOHTTP request headers.
 
-### 2 - Configuration of your hooks in your app
+### 2 - Configuration of your middleware in your app
 
 Currently only AIOHTTP is supported but the library is extensible if others
 would like to submit a pull request to support other servers that Tartiflette
 supports.
 
-Limited AIOHTTP setup example, imports and configuration kept to hook specific
+Limited AIOHTTP setup example, imports and configuration kept to middleware specific
 details:
 
 ```python
-from tartiflette_request_context_hooks.middleware import aiohttp
-from tartiflette_request_context_hooks import RequestContextHooks
-import MyContextHooks # your hook
+from tartiflette_middleware import Middleware, server
+import MyMiddleware  # your hook
 
-my_hook = RequestContextHooks(
-     context_manager=MyContextHooks(
-          my_hooks_params={},
-     ),
-     server_middleware=aiohttp    
+my_middleware = Middleware(
+    context_manager=MyMiddleware(
+        my_hooks_params={},
+    ),
+    server_middleware=server.aiohttp
 )
 
 app = web.Application(middlewares=[
-    my_hook.middleware
+    my_middleware.middleware
 ])
 ctx = {
-    'my_session_service': my_hook.service,
+    'my_session_service': my_middleware.service,
 }
 web.run_app(
     register_graphql_handlers(

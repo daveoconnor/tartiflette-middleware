@@ -1,20 +1,20 @@
 import pytest
 from unittest.mock import MagicMock, PropertyMock, Mock, patch
-from tartiflette_request_context_hooks.middleware import aiohttp
-from tartiflette_request_context_hooks.examples.header_access import HeaderAccessRequestContextHooks
+from tartiflette_middleware.server import aiohttp
+from tartiflette_middleware.examples.header_access import HeaderAccessMiddleware
 
 
 class MockRequest(dict):
     headers = {'foo': 'bar'}
 
 
-class TestHeaderAccessRequestContextHooks:
+class TestHeaderAccessMiddleware:
     def test_header_access_example_init(self):
-        HeaderAccessRequestContextHooks()
+        HeaderAccessMiddleware()
 
     @pytest.mark.asyncio
     async def test_header_access_example_enter(self, monkeypatch):
-        service = HeaderAccessRequestContextHooks()
+        service = HeaderAccessMiddleware()
         service.request = MockRequest()
         async with service:
             pass

@@ -1,11 +1,11 @@
-from tartiflette_request_context_hooks import BaseRequestContextHooks
+from tartiflette_middleware import BaseMiddleware
 
 
-class StandaloneRequestContextHooks(BaseRequestContextHooks):
+class StandaloneMiddleware(BaseMiddleware):
     label = 'Standalone'
 
     def __init__(self):
-        BaseRequestContextHooks.__init__(self)
+        BaseMiddleware.__init__(self)
         """
         This is where you can perform any setup. e.g. Initialising factories
         which are to be used in the __aenter__ call.

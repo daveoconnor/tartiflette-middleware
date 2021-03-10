@@ -1,4 +1,4 @@
-from tartiflette_request_context_hooks.exceptions import\
+from tartiflette_middleware.exceptions import\
     RequestNotSetException, RequestDataNotStoredException
 
 class TestExceptions:

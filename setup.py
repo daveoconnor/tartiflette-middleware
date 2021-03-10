@@ -8,16 +8,16 @@ with open('README.md') as readme:
     long_description = readme.read()
 
 setuptools.setup(
-    name="tartiflette-request-context-hooks",
-    version="1.0.1",
+    name="tartiflette-middleware",
+    version="1.0",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
-    description="Framework for tartiflette request/resolver context data assignment",
+    description="Framework for Tartiflette middleware with context data assignment",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/daveoconnor/tartiflette-request-context-hooks",
+    url="https://github.com/daveoconnor/tartiflette-middleware",
     packages=setuptools.find_packages(include=[
-        'tartiflette_request_context_hooks',
+        'tartiflette_middleware',
     ]),
     classifiers=[
         "Programming Language :: Python :: 3",

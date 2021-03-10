@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from .exceptions import RequestNotSetException, RequestDataNotStoredException
 
 
-class BaseRequestContextHooks(metaclass=ABCMeta):
+class BaseMiddleware(metaclass=ABCMeta):
     _lib_label = 'ttfhooks'
 
     def __init__(self):

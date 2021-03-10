@@ -1,7 +1,7 @@
-class RequestContextHooks:
+class Middleware:
     def __init__(self, context_manager, server_middleware):
         """
-        :param BaseRequestContextHooks Your custom hook
+        :param BaseMiddleware Your custom middleware
         :param package Middleware from the middleware package
         """
         self._service = context_manager

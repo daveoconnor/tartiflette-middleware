@@ -1,14 +1,14 @@
 from unittest.mock import Mock
-from tartiflette_request_context_hooks import RequestContextHooks
-from .sample_hooks import ConcreteWorkingRequestContextHooks
+from tartiflette_middleware import Middleware
+from .sample_middleware import ConcreteWorkingMiddleware
 
 
-class TestRequestContextHooks:
+class TestMiddleware:
     def test_init(self):
-        manager = ConcreteWorkingRequestContextHooks()
+        manager = ConcreteWorkingMiddleware()
         mock_middleware = Mock()
         mock_middleware.get_hooks_service_middleware = Mock(return_value='foo')
-        hook = RequestContextHooks(
+        hook = Middleware(
             context_manager=manager,
             server_middleware=mock_middleware
         )

@@ -1,11 +1,11 @@
-from tartiflette_request_context_hooks import BaseRequestContextHooks
+from tartiflette_middleware import BaseMiddleware
 
 
-class HeaderAccessRequestContextHooks(BaseRequestContextHooks):
+class HeaderAccessMiddleware(BaseMiddleware):
     label = 'UsesHeaders'
 
     def __init__(self, *args, **kwargs):
-        BaseRequestContextHooks.__init__(self)
+        BaseMiddleware.__init__(self)
         """
         This is where you can perform any setup. e.g. Initialising factories
         which are to be used in the __aenter__ call.
