@@ -14,8 +14,8 @@ pip install tartiflette-middleware
 
 ## Usage
 This requires:
-1. Creation of your hooks.
-1. Configuration of your hooks in your application.
+1. Creation of your middleware.
+1. Configuration of your middleware in your application.
 1. Update your resolvers to access your data.
 
 ### 1 - Creation of your middleware
@@ -67,7 +67,7 @@ import MyMiddleware  # your hook
 
 my_middleware = Middleware(
     context_manager=MyMiddleware(
-        my_hooks_params={},
+        my_hook_params={},
     ),
     server_middleware=server.aiohttp
 )
