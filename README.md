@@ -27,10 +27,10 @@ Example:
 from tartiflette_middleware import BaseMiddleware
 
 class MyMiddleware(BaseMiddleware):
-    # required short arbitrary unique hook label
+    # required short arbitrary unique middleware label
     label = 'MyMware'
     
-    def __init__(self, my_hook_params):
+    def __init__(self, my_middleware_params):
         BaseMiddleware.__init__(self)
         # do things necessary for repeated use across all of the requests, e.g.
         # configure factories
@@ -63,11 +63,11 @@ details:
 
 ```python
 from tartiflette_middleware import Middleware, server
-import MyMiddleware  # your hook
+import MyMiddleware     # your Middleware as defined earlier
 
 my_middleware = Middleware(
     context_manager=MyMiddleware(
-        my_hook_params={},
+        my_middleware_params={},
     ),
     server_middleware=server.aiohttp
 )
