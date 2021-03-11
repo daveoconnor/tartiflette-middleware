@@ -1,7 +1,7 @@
-# Tartiflette Middlware
+# Tartiflette Middleware
 
-Framework to facilitate the creation of middleware with resolver context
-variable assignment using plain python context managers. 
+Framework to facilitate the creation of middleware for [Tartiflette](https://tartiflette.io/) with
+resolver context variable assignment using python context managers. 
 
 Allows for processing of request/response headers, dependent on the
 http server you're using.

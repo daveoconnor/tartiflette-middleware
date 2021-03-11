@@ -9,10 +9,10 @@ with open('README.md') as readme:
 
 setuptools.setup(
     name="tartiflette-middleware",
-    version="1.0.1",
+    version="1.0.2",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
-    description="Framework for Tartiflette middleware with context data assignment",
+    description="Framework for middleware for Tartiflette, with context data assignment",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/daveoconnor/tartiflette-middleware",
