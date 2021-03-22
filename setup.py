@@ -36,6 +36,7 @@ setuptools.setup(
         "pytest>=6.0",
         "pytest-xdist>=1.34",
         "pytest-cov>=2.10",
+        "pytest-asyncio>=0.14.0"
     ],
     setup_requires=[] + pytest_runner,
 )
