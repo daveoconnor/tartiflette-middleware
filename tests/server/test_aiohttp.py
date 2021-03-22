@@ -1,9 +1,13 @@
 import pytest
+
+from tartiflette_middleware import BaseMiddleware
 from tartiflette_middleware.server import aiohttp
 from unittest.mock import MagicMock
 
 
-class ExampleRequestContextHooks:
+class ExampleRequestContextHooks(BaseMiddleware):
+    label = "Example"
+
     async def __aenter__(self):
         """fake enter"""
 
@@ -12,6 +16,20 @@ class ExampleRequestContextHooks:
 
     async def __call__(self, *args, **kwargs):
         """fake call"""
+
+
+class ExampleStatusRequestContextHooks(BaseMiddleware):
+    label = "Example"
+
+    async def __aenter__(self):
+        self.status = 401
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """fake exit"""
+
+    async def __call__(self, *args, **kwargs):
+        """fake call"""
+
 
 
 # take this from test_header_access
@@ -48,3 +66,17 @@ class TestAiohttp:
         await mw_enter_fail()
         assert isinstance(service.request, MagicMock)
         assert service.handler is handler
+
+    @pytest.mark.asyncio
+    async def test_request_status(self, monkeypatch):
+        monkeypatch.setattr(
+            aiohttp,
+            'middleware',
+            mock_middleware
+        )
+        service = ExampleStatusRequestContextHooks()
+        mw_enter_status = aiohttp.get_hooks_service_middleware(
+            context_service=service
+        )
+        await mw_enter_status()
+        assert service.status is 401

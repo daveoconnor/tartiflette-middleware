@@ -10,5 +10,8 @@ def get_hooks_service_middleware(*, context_service):
         context_service.request = request
         context_service.handler = handler
         async with context_service:
-            return await handler(request)
+            response = await handler(request)
+            if context_service.status:
+                response.set_status(context_service.status)
+            return response
     return manager

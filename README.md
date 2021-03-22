@@ -52,6 +52,13 @@ class MyMiddleware(BaseMiddleware):
 There are more examples in the examples directory including one with access to
 AIOHTTP request headers.
 
+You can set the response http status using something like:
+
+```python
+async def __aenter__(self):
+    self.status = 401
+```
+
 ### 2 - Configuration of your middleware in your app
 
 Currently only AIOHTTP is supported but the library is extensible if others

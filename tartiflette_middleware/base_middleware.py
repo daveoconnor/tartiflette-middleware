@@ -12,6 +12,7 @@ class BaseMiddleware(metaclass=ABCMeta):
         """
         self._request = None
         self._handler = None
+        self._status = None
 
     @property
     @abstractmethod
@@ -39,6 +40,14 @@ class BaseMiddleware(metaclass=ABCMeta):
     @handler.setter
     def handler(self, value):
         self._handler = value
+
+    @property
+    def status(self):
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        self._status = status
 
     @abstractmethod
     async def __aenter__(self):
