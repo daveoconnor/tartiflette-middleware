@@ -52,7 +52,7 @@ class MyMiddleware(BaseMiddleware):
 There are more examples in the examples directory including one with access to
 AIOHTTP request headers.
 
-You can set the response http status using something like:
+You can set the response http status using:
 
 ```python
 async def __aenter__(self):
